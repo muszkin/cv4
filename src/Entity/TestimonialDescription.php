@@ -8,22 +8,47 @@
 
 namespace App\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
 
+/**
+ * Class TestimonialDescription
+ * @package App\Entity
+ * @ORM\Entity()
+ */
 class TestimonialDescription
 {
-    /** @var  int */
+    /**
+     * @var int
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
     private $id;
 
-    /** @var  string */
+    /**
+     * @var string
+     * @ORM\Column(type="string",length=255)
+     */
     private $project;
 
-    /** @var  string */
+    /**
+     * @var string
+     * @ORM\Column(type="string",length=255)
+     */
     private $description;
 
-    /** @var Language */
+    /**
+     * @var Language
+     * @ORM\ManyToOne(targetEntity="Language",cascade={"persist"})
+     * @ORM\JoinColumn(nullable=false,onDelete="CASCADE")
+     */
     private $lang;
 
-    /** @var Testimonial */
+    /**
+     * @var Testimonial
+     * @ORM\ManyToOne(targetEntity="Testimonial",inversedBy="testimonialDescriptions",cascade={"persist"})
+     * @ORM\JoinColumn(nullable=false,onDelete="CASCADE")
+     */
     private $testimonial;
 
     /**

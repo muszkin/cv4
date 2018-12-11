@@ -8,19 +8,42 @@
 
 namespace App\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
 
+
+/**
+ * Class SkillDescription
+ * @package App\Entity
+ * @ORM\Entity()
+ */
 class SkillDescription
 {
-    /** @var int */
+    /**
+     * @var int
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
     private $id;
 
-    /** @var string */
+    /**
+     * @var string
+     * @ORM\Column(type="string",length=255)
+     */
     private $name;
 
-    /** @var Language */
+    /**
+     * @var Language
+     * @ORM\ManyToOne(targetEntity="Language",cascade={"persist"})
+     * @ORM\JoinColumn(nullable=false,onDelete="CASCADE")
+     */
     private $lang;
 
-    /** @var Skill */
+    /**
+     * @var Skill
+     * @ORM\ManyToOne(targetEntity="Skill",inversedBy="skillDescriptions",cascade={"persist"})
+     * @ORM\JoinColumn(nullable=false,onDelete="CASCADE")
+     */
     private $skill;
 
     /**

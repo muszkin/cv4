@@ -3,7 +3,10 @@
 namespace App\Controller;
 
 
+use App\Entity\Language;
+use App\Factory\SchoolFactory;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 class IndexController extends AbstractController
@@ -11,18 +14,34 @@ class IndexController extends AbstractController
 
   /**
    * @Route("/",name="index")
+   * @param SchoolFactory $schoolFactory
+   * @param Request $request
+   * @return \Symfony\Component\HttpFoundation\Response
    */
-  public function indexAction()
+  public function indexAction(SchoolFactory $schoolFactory,Request $request)
   {
     $em = $this->getDoctrine()->getManager();
+    $lang = $request->getLanguages();
+    $schools = [];
 
+    /** @var Language $language */
+    $language = $em->getRepository("App:Language")->findOneBy([
+      "iso" => strtoupper($lang[0]),
+    ]);
 
-    $schools = $em->getRepository('AppBundle:Education')->findAll();
-    $works = $em->getRepository('AppBundle:Work')->findAll();
-    $skills = $em->getRepository("AppBundle:Skill")->findAll();
-    $testimonials = $em->getRepository("AppBundle:Testimonial")->findAll();
+    if ($language) {
+      $schools = $schoolFactory->getAllSchoolsForLanguage($language);
+    }else{
+      $language = $em->getRepository("App:Language")->findOneBy([
+        "iso" => "EN"
+      ]);
+      $schools = $schoolFactory->getAllSchoolsForLanguage($language);
+    }
+    $works = $em->getRepository('App:Work')->findAll();
+    $skills = $em->getRepository("App:Skill")->findAll();
+    $testimonials = $em->getRepository("App:Testimonial")->findAll();
 
-    return $this->render('@App/index.html.twig',[
+    return $this->render('index.html.twig',[
       "schools" => $schools,
       "works" => $works,
       "skills" => $skills,

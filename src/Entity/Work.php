@@ -23,26 +23,26 @@ class Work
     /**
      * @var int
      * @ORM\Id
-     * @ORM\Column(name="id",type="integer")
+     * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
     /**
      * @var string
-     * @ORM\Column(name="comapny",type="string",length=255)
+     * @ORM\Column(type="string",length=255)
      */
     private $company;
 
     /**
      * @var \DateTime
-     * @ORM\Column(name="start_date",type="date")
+     * @ORM\Column(type="date")
      */
     private $start_date;
 
     /**
      * @var \DateTime
-     * @ORM\Column(name="end_date",type="date")
+     * @ORM\Column(type="date")
      */
     private $end_date;
 

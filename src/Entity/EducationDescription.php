@@ -8,25 +8,54 @@
 
 namespace App\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
 
+
+/**
+ * Class EducationDescription
+ * @package App\Entity
+ * @ORM\Entity()
+ */
 class EducationDescription
 {
-    /** @var int */
+    /**
+     * @var int
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
     private $id;
 
-    /** @var string */
+    /**
+     * @var string
+     * @ORM\Column(type="string",length=255)
+     */
     private $school_name;
 
-    /** @var string */
+    /**
+     * @var string
+     * @ORM\Column(type="string",length=255,nullable=true)
+     */
     private $description;
 
-    /** @var string */
+    /**
+     * @var string
+     * @ORM\Column(type="string",length=255)
+     */
     private $end_title;
 
-    /** @var Language */
+    /**
+     * @var Language
+     * @ORM\ManyToOne(targetEntity="Language",cascade={"persist"})
+     * @ORM\JoinColumn(nullable=false,onDelete="CASCADE")
+     */
     private $lang;
 
-    /** @var Education */
+    /**
+     * @var Education
+     * @ORM\ManyToOne(targetEntity="Education",inversedBy="educationDescriptions",cascade={"persist"})
+     * @ORM\JoinColumn(nullable=false,onDelete="CASCADE")
+     */
     private $education;
 
     /**

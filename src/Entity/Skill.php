@@ -10,16 +10,33 @@ namespace App\Entity;
 
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\Mapping as ORM;
 
+/**
+ * Class Skill
+ * @package App\Entity
+ * @ORM\Entity()
+ */
 class Skill
 {
-    /** @var int */
+    /**
+     * @var int
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
     private $id;
 
-    /** @var int */
+    /**
+     * @var int
+     * @ORM\Column(type="integer")
+     */
     private $value;
 
-    /** @var SkillDescription|ArrayCollection */
+    /**
+     * @var SkillDescription|ArrayCollection
+     * @ORM\OneToMany(targetEntity="SkillDescription",mappedBy="skill",cascade={"persist"})
+     */
     private $skillDescriptions;
 
     public function __construct()

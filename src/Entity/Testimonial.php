@@ -10,19 +10,39 @@ namespace App\Entity;
 
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\Mapping as ORM;
 
+/**
+ * Class Testimonial
+ * @package App\Entity
+ * @ORM\Entity()
+ */
 class Testimonial
 {
-    /** @var  int */
+    /**
+     * @var  int
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
     private $id;
 
-    /** @var  string */
+    /**
+     * @var  string
+     * @ORM\Column(type="string",length=255)
+     */
     private $name;
 
-    /** @var  string */
+    /**
+     * @var  string
+     * @ORM\Column(type="string",length=255)
+     */
     private $project_url;
 
-    /** @var TestimonialDescription|ArrayCollection */
+    /**
+     * @var TestimonialDescription|ArrayCollection
+     * @ORM\OneToMany(targetEntity="TestimonialDescription",mappedBy="testimonial",cascade={"persist"})
+     */
     private $testimonialDescriptions;
 
 

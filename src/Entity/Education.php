@@ -10,19 +10,40 @@ namespace App\Entity;
 
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\Mapping as ORM;
 
+
+/**
+ * Class Education
+ * @package App\Entity
+ * @ORM\Entity()
+ */
 class Education
 {
-    /** @var int */
+    /**
+     * @var int
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
     private $id;
 
-    /** @var \DateTime */
+    /**
+     * @var \DateTime
+     * @ORM\Column(type="date")
+     */
     private $start_date;
 
-    /** @var \DateTime */
+    /**
+     * @var \DateTime
+     * @ORM\Column(type="date")
+     */
     private $end_date;
 
-    /** @var EducationDescription|ArrayCollection */
+    /**
+     * @var EducationDescription|ArrayCollection
+     * @ORM\OneToMany(targetEntity="EducationDescription",mappedBy="education")
+     */
     private $educationDescriptions;
 
 

@@ -20,20 +20,20 @@ class Language
     /**
      * @var int
      * @ORM\Id
-     * @ORM\Column(name="id",type="integer")
+     * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
     /**
      * @var string
-     * @ORM\Column(name="name",type="string",length=255)
+     * @ORM\Column(type="string",length=255)
      */
     private $name;
 
     /**
      * @var string
-     * @ORM\Column(name="iso",type="string",length=2)
+     * @ORM\Column(type="string",length=2)
      */
     private $iso;
 

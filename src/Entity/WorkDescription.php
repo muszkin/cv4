@@ -20,14 +20,14 @@ class WorkDescription
     /**
      * @var int
      * @ORM\Id
-     * @ORM\Column(name="id",type="integer")
+     * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
     /**
      * @var string
-     * @ORM\Column(name="position",type="string",length=255)
+     * @ORM\Column(type="string",length=255)
      */
     private $position;
 

@@ -22,7 +22,7 @@ class Duty
     /**
      * @var int
      * @ORM\Id
-     * @ORM\Column(name="duty_id",type="integer")
+     * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
@@ -34,7 +34,10 @@ class Duty
      */
     private $work;
 
-    /** @var ArrayCollection|DutyDescription */
+    /**
+     * @var ArrayCollection|DutyDescription
+     * @ORM\OneToMany(targetEntity="DutyDescription",mappedBy="duty")
+     */
     private $dutyDescriptions;
 
     public function __construct()
