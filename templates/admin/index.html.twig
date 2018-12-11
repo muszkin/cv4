@@ -1,6 +1,10 @@
 {% extends "admin/main.html.twig" %}
+{% form_theme form "admin/forms/date_block.html.twig" %}
 {% block body %}
 <body>
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    {{ form_end(form) }}
     <!-- ============================================================== -->
     <!-- main wrapper -->
     <!-- ============================================================== -->

@@ -1,0 +1,9 @@
+{% block date_widget %}
+    {% set type = type|default("date") %}
+    <div class="input-group date" id="{{ name }}" data-target-input="nearest">
+        <input type="text" class="form-control datetimepicker-input" data-target="#{{ name }}" {{ block('widget_attributes') }} />
+        <div class="input-group-append" data-target="#{{ name }}" data-toggle="datetimepicker">
+            <div class="input-group-text"><i class="far fa-calendar-alt"></i></div>
+        </div>
+    </div>
+{% endblock %}
